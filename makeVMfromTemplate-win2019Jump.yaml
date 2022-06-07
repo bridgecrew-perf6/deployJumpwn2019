@@ -4,16 +4,18 @@
   connection: local
   gather_facts: no
   tasks:
-  - name: Clone the template
-    vmware_guest:
-      hostname: 10.10.124.9
-      username: administrator@vsphere.local
-      password: HP1nvent!
-      validate_certs: False
-      name: "{{ vmname }}"
-      template: Wind2019JumpVM-Terraform
-      datacenter: INTEL_DC
-      folder: /INTEL_DC
-      state: poweredon
-      wait_for_ip_address: no
+  - name: Deploy Virtual Machine from template in content library with PowerON State
+  community.vmware.vmware_content_deploy_template:
+    hostname: 10.10.124.9
+    username: administrator@vsphere.local
+    password: HP1nvent!
+    template: Wind2019JumpVM-Terraform
+    content_library: Robert-Nov2021
+    datastore: HA_intelClusterDisk1-USE-THIS
+    folder: vm
+    datacenter: INTEL_DC
+    name: Sample_VM
+    resource_pool: JumpVMs
+    state: poweredon
+  delegate_to: localhost
 
