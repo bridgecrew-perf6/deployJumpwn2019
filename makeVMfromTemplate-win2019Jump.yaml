@@ -13,7 +13,7 @@
       name: "{{ vmname }}"
       template: Wind2019JumpVM-Terraform
       datacenter: INTEL_DC
-      folder: /INTEL_CL/vm
+      folder: /INTEL_DC/vm
       state: poweredon
       wait_for_ip_address: no
 
